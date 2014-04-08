@@ -729,7 +729,13 @@ static dispatch_once_t onceToken;
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification
 {
-    NSNumber *CHECK_Order = [self getHysteriaOrder:audioPlayer.currentItem];
+    for (id<HysteriaPlayerDelegate>delegate in delegates) {
+        if ([delegate respondsToSelector:@selector(hysteriaPlayerDidReachEnd)]) {
+            [delegate hysteriaPlayerDidReachEnd];
+        }
+    }
+    
+    /*NSNumber *CHECK_Order = [self getHysteriaOrder:audioPlayer.currentItem];
     if (CHECK_Order) {
         if (_repeatMode == HysteriaPlayerRepeatModeOnce) {
             NSInteger currentIndex = [CHECK_Order integerValue];
@@ -754,7 +760,7 @@ static dispatch_once_t onceToken;
                 }
             }
         }
-    }
+    }*/
 }
 
 - (NSUInteger)randomIndex
