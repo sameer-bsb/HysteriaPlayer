@@ -78,6 +78,7 @@ typedef NS_ENUM(NSUInteger, HysteriaPlayerShuffleMode) {
 
 @property (nonatomic, strong, readonly) NSMutableArray *playerItems;
 @property (nonatomic, readonly) BOOL isInEmptySound;
+@property (nonatomic) BOOL manualPause;
 @property (nonatomic) BOOL showErrorMessages;
 
 + (HysteriaPlayer *)sharedInstance;
